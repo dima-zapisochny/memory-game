@@ -54,15 +54,22 @@ export default new Vuex.Store({
       {
         name: 'Card #8'
       }
-    ]
+    ],
+    moves: 0
   },
   mutations: {
+    CHANGE_MOVE_IN_STORE (state) {
+      state.moves += 1
+    }
   },
   actions: {
   },
   getters: {
     CARDS: state => {
       return state.cards
+    },
+    MOVES: state => {
+      return state.moves
     }
   },
   modules: {
