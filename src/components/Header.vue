@@ -23,8 +23,7 @@ export default {
       hours: 0,
       minutes: 0,
       seconds: 0,
-      button: true,
-      stopTimer: true
+      button: true
     }
   },
   computed: {
@@ -34,13 +33,12 @@ export default {
   },
   methods: {
     ...mapMutations({
-      CHANGE_MODAL_IN_STORE: 'CHANGE_MODAL_IN_STORE'
+      CHANGE_MOVE_NEW: 'CHANGE_MOVE_NEW'
     }),
     startGame () {
-      this.stopTimer = !this.stopTimer
       this.button = !this.button
-      this.CHANGE_MODAL_IN_STORE()
-      const timer = setInterval(() => {
+      this.$emit('deleteModal')
+      setInterval(() => {
         this.seconds += 1
         if (this.seconds > 59) {
           this.seconds = 0
@@ -50,18 +48,12 @@ export default {
             this.hours += 1
           }
         }
-        if (this.stopTimer) {
-          clearInterval(timer)
-          this.hours = 0
-          this.minutes = 0
-          this.seconds = 0
-        }
       }, 1000)
     },
     newGame () {
-      this.CHANGE_MODAL_IN_STORE()
-      this.button = !this.button
-      this.stopTimer = !this.stopTimer
+      this.CHANGE_MOVE_NEW()
+      this.$emit('newGame')
+      this.$emit('deleteModal')
     }
   }
 }
@@ -100,7 +92,7 @@ export default {
   cursor: pointer;
   font-weight: bold;
   margin: auto;
-  width: 100px;
+  min-width: 100px;
   color: #fff;
   background-color: #008b8b;
   border-radius: 5px;
