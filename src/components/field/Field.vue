@@ -17,8 +17,7 @@ export default {
   name: 'Field',
   data () {
     return {
-      identicalCards: [],
-      moves: 0
+      identicalCards: []
     }
   },
   components: {

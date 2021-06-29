@@ -65,8 +65,6 @@ export default new Vuex.Store({
       state.moves = 0
     }
   },
-  actions: {
-  },
   getters: {
     CARDS: state => {
       return state.cards
@@ -74,7 +72,5 @@ export default new Vuex.Store({
     MOVES: state => {
       return state.moves
     }
-  },
-  modules: {
   }
 })

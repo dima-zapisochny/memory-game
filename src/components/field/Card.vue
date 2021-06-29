@@ -28,7 +28,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .card {
   width: 150px;
@@ -55,16 +55,14 @@ export default {
   background-color: #008b8b;
 }
 .back_side {
+  font-weight: bold;
+  font-size: 20px;
   background-color: #BDBDBD;
   transform: rotateY(180deg);
 }
 
 .active .front_side {transform: rotateY(180deg);}
 .active .back_side {transform: rotateY(360deg);}
-
-.done {
-  transition: 0.1s;
-}
 
 .done .back_side {
   background-color: #50baff;

@@ -9,7 +9,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .modal {
   position: fixed;
   left: calc(50% - 200px);

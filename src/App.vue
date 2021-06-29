@@ -5,12 +5,8 @@
       @newGame="newGame"
       @deleteModal="deleteModal"
     />
-    <Field
-      :key="componentKey"
-    />
-    <Modal
-      v-if="modal"
-    />
+    <Field :key="componentKey"/>
+    <Modal v-if="modal"/>
   </div>
 </template>
 
