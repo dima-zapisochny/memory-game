@@ -1,7 +1,8 @@
 <template>
   <header class="head-app">
     <div class="count-moves"><span>MOVES {{ moves }}</span></div>
-    <button class="start-button" @click="timer"><span>START</span></button>
+    <button class="start-button" v-if="button" @click="startGame"><span>START</span></button>
+    <button class="start-button" v-if="!button" @click="newGame"><span>NEW GAME</span></button>
     <div class="timer">
       <span>TIME:</span>
       <div class="timer__hours"><span v-if="hours < 10">0</span><span>{{ hours }}</span></div>
@@ -14,14 +15,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'Header',
   data () {
     return {
       hours: 0,
       minutes: 0,
-      seconds: 0
+      seconds: 0,
+      button: true,
+      stopTimer: true
     }
   },
   computed: {
@@ -30,8 +33,14 @@ export default {
     })
   },
   methods: {
-    timer () {
-      setInterval(() => {
+    ...mapMutations({
+      CHANGE_MODAL_IN_STORE: 'CHANGE_MODAL_IN_STORE'
+    }),
+    startGame () {
+      this.stopTimer = !this.stopTimer
+      this.button = !this.button
+      this.CHANGE_MODAL_IN_STORE()
+      const timer = setInterval(() => {
         this.seconds += 1
         if (this.seconds > 59) {
           this.seconds = 0
@@ -41,8 +50,18 @@ export default {
             this.hours += 1
           }
         }
+        if (this.stopTimer) {
+          clearInterval(timer)
+          this.hours = 0
+          this.minutes = 0
+          this.seconds = 0
+        }
       }, 1000)
-      console.log('start')
+    },
+    newGame () {
+      this.CHANGE_MODAL_IN_STORE()
+      this.button = !this.button
+      this.stopTimer = !this.stopTimer
     }
   }
 }

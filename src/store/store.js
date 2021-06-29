@@ -55,11 +55,15 @@ export default new Vuex.Store({
         name: 'Card #8'
       }
     ],
-    moves: 0
+    moves: 0,
+    modal: true
   },
   mutations: {
     CHANGE_MOVE_IN_STORE (state) {
       state.moves += 1
+    },
+    CHANGE_MODAL_IN_STORE (state) {
+      state.modal = !state.modal
     }
   },
   actions: {
@@ -70,7 +74,8 @@ export default new Vuex.Store({
     },
     MOVES: state => {
       return state.moves
-    }
+    },
+    MODAL: state => state.modal
   },
   modules: {
   }

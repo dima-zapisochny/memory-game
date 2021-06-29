@@ -37,7 +37,6 @@ export default {
   perspective: 1000px;
   border: 2px #fff solid;
   cursor: pointer;
-  z-index: 10;
 }
 .front_side, .back_side {
   position: absolute;
