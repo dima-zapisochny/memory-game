@@ -2,7 +2,7 @@
   <header class="head-app">
     <div class="count-moves"><span>MOVES {{ moves }}</span></div>
     <button class="start-button" v-if="button" @click="startGame"><span>START</span></button>
-    <button class="start-button" v-if="!button" @click="newGame"><span>NEW GAME</span></button>
+    <button class="start-button" v-else @click="newGame"><span>NEW GAME</span></button>
     <div class="timer">
       <span>TIME:</span>
       <div class="timer__hours"><span v-if="hours < 10">0</span><span>{{ hours }}</span></div>
@@ -26,18 +26,16 @@ export default {
       button: true
     }
   },
-  computed: {
-    ...mapGetters({
-      moves: 'MOVES'
-    })
-  },
+  computed: mapGetters({
+    moves: 'MOVES'
+  }),
   methods: {
     ...mapMutations({
       CHANGE_MOVE_NEW: 'CHANGE_MOVE_NEW'
     }),
     startGame () {
       this.button = !this.button
-      this.$emit('deleteModal')
+      this.$emit('toggleModal')
       setInterval(() => {
         this.seconds += 1
         if (this.seconds > 59) {
@@ -53,7 +51,7 @@ export default {
     newGame () {
       this.CHANGE_MOVE_NEW()
       this.$emit('newGame')
-      this.$emit('deleteModal')
+      this.$emit('toggleModal')
     }
   }
 }

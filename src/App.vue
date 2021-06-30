@@ -3,7 +3,7 @@
     <Header
       :key="componentKey"
       @newGame="newGame"
-      @deleteModal="deleteModal"
+      @toggleModal="toggleModal"
     />
     <Field :key="componentKey"/>
     <Modal v-if="modal"/>
@@ -33,7 +33,7 @@ export default {
     newGame () {
       this.componentKey += 1
     },
-    deleteModal () {
+    toggleModal () {
       this.modal = !this.modal
     }
   }
