@@ -16,6 +16,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import { MUTATION } from '../store/mutations-types'
 export default {
   name: 'Header',
   data () {
@@ -27,11 +28,11 @@ export default {
     }
   },
   computed: mapGetters({
-    moves: 'MOVES'
+    moves: 'moves'
   }),
   methods: {
     ...mapMutations({
-      CHANGE_MOVE_NEW: 'CHANGE_MOVE_NEW'
+      changeMovesNewGame: MUTATION.CHANGE_MOVES_NEW_GAME
     }),
     startGame () {
       this.button = !this.button
@@ -49,7 +50,7 @@ export default {
       }, 1000)
     },
     newGame () {
-      this.CHANGE_MOVE_NEW()
+      this.changeMovesNewGame()
       this.$emit('newGame')
       this.$emit('toggleModal')
     }

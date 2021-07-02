@@ -13,6 +13,8 @@
 <script>
 import Card from './Card'
 import { mapGetters, mapMutations } from 'vuex'
+import { MUTATION } from '../../store/mutations-types'
+
 export default {
   name: 'Field',
   data () {
@@ -25,12 +27,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      cards: 'CARDS'
+      cards: 'cards'
     })
   },
   methods: {
     ...mapMutations({
-      CHANGE_MOVE_IN_STORE: 'CHANGE_MOVE_IN_STORE'
+      changeMovesInStore: MUTATION.CHANGE_MOVES_IN_STORE
     }),
     randomList (array) {
       let currentIndex = array.length
@@ -68,7 +70,7 @@ export default {
             this.identicalCards = []
           }, 1500)
         }
-        this.CHANGE_MOVE_IN_STORE()
+        this.changeMovesInStore()
       }
     }
   }

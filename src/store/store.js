@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { MUTATION } from './mutations-types'
 
 Vue.use(Vuex)
 
@@ -58,18 +59,18 @@ export default new Vuex.Store({
     moves: 0
   },
   mutations: {
-    CHANGE_MOVE_IN_STORE (state) {
+    [MUTATION.CHANGE_MOVES_IN_STORE] (state) {
       state.moves += 1
     },
-    CHANGE_MOVE_NEW (state) {
+    [MUTATION.CHANGE_MOVES_NEW_GAME] (state) {
       state.moves = 0
     }
   },
   getters: {
-    CARDS: state => {
+    cards: state => {
       return state.cards
     },
-    MOVES: state => {
+    moves: state => {
       return state.moves
     }
   }
